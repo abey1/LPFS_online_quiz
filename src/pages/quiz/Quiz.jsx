@@ -16,6 +16,8 @@ const Quiz = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     // Load quiz data based on categoryId and quizId
+    dispatch(setDirection(0));
+    dispatch(setCurrent(0));
     dispatch(initializeQuizData({ categoryId, quizId }));
   }, [categoryId, quizId]);
   console.log(quizData);

@@ -1,6 +1,8 @@
 import React from "react";
-
-const Question = ({ question, choices }) => {
+import { setUserChoice } from "../../pages/quiz/quizSlice.js";
+import { useDispatch } from "react-redux";
+const Question = ({ question, choices, choice }) => {
+  const dispatch = useDispatch();
   return (
     <>
       {/* Question */}
@@ -12,11 +14,13 @@ const Question = ({ question, choices }) => {
           <label
             key={index}
             className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50"
+            onClick={() => dispatch(setUserChoice(option))}
           >
             <input
               type="radio"
               name="answer"
               value={option}
+              checked={choice === option}
               className="h-4 w-4"
             />
             <span className="text-gray-800">{option}</span>
