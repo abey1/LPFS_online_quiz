@@ -27,7 +27,10 @@ const router = createBrowserRouter(
         path="/LPFS_online_quiz/category/:categoryId"
         element={<Category />}
       />
-      <Route path="/LPFS_online_quiz/quiz/:quizId" element={<Quiz />} />
+      <Route
+        path="/LPFS_online_quiz/category/:categoryId/quiz/:quizId"
+        element={<Quiz />}
+      />
       <Route path="/LPFS_online_quiz/results" element={<Results />} />
       <Route path="*" element={<PageNotFound />} />
     </Route>

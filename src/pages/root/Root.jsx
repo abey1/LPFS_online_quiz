@@ -5,7 +5,7 @@ const Root = () => {
   return (
     <>
       <Nav />
-      <div className="px-4 md:px-8 lg:px-16 border min-h-screen">
+      <div className="px-4 md:px-8 lg:px-16  min-h-screen">
         <Outlet />
       </div>
     </>
