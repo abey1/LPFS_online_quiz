@@ -6,7 +6,7 @@ import BackButton from "../../components/back_button/BackButton";
 const Category = () => {
   const { categoryId } = useParams();
   return (
-    <div className="flex flex-col  w-full h-full justify-center items-center min-h-screen border">
+    <div className="flex flex-col  w-full h-full justify-center items-center min-h-screen ">
       <BackButton />
 
       <h1 className="text-4xl font-bold">{data[categoryId].name}</h1>

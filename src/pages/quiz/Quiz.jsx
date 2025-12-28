@@ -1,7 +1,7 @@
 import React from "react";
 import QuitButton from "../../components/quit_button/QuitButton";
 import data from "../../data/data";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import Question from "../../components/question/Question";
 import { AnimatePresence, motion } from "framer-motion";
@@ -34,11 +34,14 @@ const Quiz = () => {
       dispatch(setCurrent(current - 1));
     }
   };
+  const allQuestionsAnswered = Object.values(quizData).every(
+    (q) => q.choice !== null
+  );
 
   return (
     <>
       <QuitButton />
-      <div className="flex justify-center items-center px-4 py-8 border min-h-screen">
+      <div className="flex justify-center items-center px-4 py-8  min-h-screen">
         <div className="w-full max-w-xl bg-white rounded-xl shadow-md p-6 md:w-100 lg:w-150">
           {/* Progress */}
           <div className="mb-4 text-sm text-gray-500">
@@ -72,15 +75,31 @@ const Quiz = () => {
             >
               Previous
             </button>
-
-            <button
-              type="button"
-              className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
-              disabled={current === quizData.length - 1}
-              onClick={nextQuestion}
-            >
-              Next
-            </button>
+            {/* {current === quizData.length - 1 && !allQuestionsAnswered && (
+              <div className="text-red-500 self-center">
+                Please answer all questions to finish.
+              </div>
+            )} */}
+            {current < quizData.length - 1 ? (
+              <button
+                type="button"
+                className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
+                disabled={current === quizData.length - 1}
+                onClick={nextQuestion}
+              >
+                Next
+              </button>
+            ) : (
+              <Link to="/LPFS_online_quiz/results" replace={true}>
+                <button
+                  type="button"
+                  className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
+                  disabled={!allQuestionsAnswered}
+                >
+                  finish
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

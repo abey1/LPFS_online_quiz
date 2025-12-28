@@ -17,11 +17,15 @@ const QuizSlice = createSlice({
   initialState: {
     current: 0,
     direction: 0,
+    categoryId: null,
+    quizId: null,
     quizData: {},
   },
   reducers: {
     initializeQuizData: (state, action) => {
       const { categoryId, quizId } = action.payload;
+      state.categoryId = categoryId;
+      state.quizId = quizId;
       let rawData = data[categoryId].quizzes[quizId];
       rawData = shuffleArray(rawData);
       const formattedData = rawData.map((item) => ({
