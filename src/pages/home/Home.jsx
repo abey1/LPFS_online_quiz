@@ -18,12 +18,16 @@ const Home = () => {
           topics and test your skills!
         </p>
         <div className="flex justify-center mt-6">
-          <button className="p-4 bg-blue-500 text-white rounded hover:bg-blue-600">
-            <Link to="/LPFS_online_quiz/categories"> Start Quiz</Link>
-          </button>
-          <button className="ml-4 p-4 bg-gray-500 text-white rounded hover:bg-gray-600">
-            <Link to="/LPFS_online_quiz/howto">How it works</Link>
-          </button>
+          <Link to="/LPFS_online_quiz/categories">
+            <button className="p-4 bg-blue-500 text-white rounded hover:bg-blue-600 hover:cursor-pointer">
+              Start Quiz
+            </button>
+          </Link>
+          <Link to="/LPFS_online_quiz/howto">
+            <button className="ml-4 p-4 bg-gray-500 text-white rounded hover:bg-gray-600 hover:cursor-pointer">
+              How it works
+            </button>
+          </Link>
         </div>
       </div>
     </div>

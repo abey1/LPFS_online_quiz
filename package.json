@@ -12,8 +12,11 @@
     "deploy": "gh-pages -d dist --repo https://github.com/abey1/LPFS_online_quiz.git"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
+    "framer-motion": "^12.23.26",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.11.0"
   },
   "devDependencies": {
