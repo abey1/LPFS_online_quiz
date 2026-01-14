@@ -34,7 +34,6 @@ const Results = () => {
       r = Math.round(255 - ((p - 50) / 50) * 255);
       g = 255;
     }
-    console.log(`rgb(${r}, ${g}, ${b})`);
     return `rgb(${r}, ${g}, ${b})`;
   }
   const color = getColorFromPercentage((score / quizData.length) * 100);

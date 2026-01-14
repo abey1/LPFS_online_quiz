@@ -20,7 +20,7 @@ const QuizSlice = createSlice({
     direction: 0,
     categoryId: null,
     quizId: null,
-    quizData: {},
+    quizData: [],
   },
   reducers: {
     initializeQuizData: (state, action) => {
