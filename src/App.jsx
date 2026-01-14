@@ -19,22 +19,17 @@ import Root from "./pages/root/Root";
 
 const router = createBrowserRouter(
   createRoutesFromChildren(
-    <Route path="/LPFS_online_quiz/" element={<Root />}>
+    <Route path="/" element={<Root />}>
       <Route index element={<Home />} />
-      <Route path="/LPFS_online_quiz/howto" element={<Howto />} />
-      <Route path="/LPFS_online_quiz/categories" element={<Categories />} />
-      <Route
-        path="/LPFS_online_quiz/category/:categoryId"
-        element={<Category />}
-      />
-      <Route
-        path="/LPFS_online_quiz/category/:categoryId/quiz/:quizId"
-        element={<Quiz />}
-      />
-      <Route path="/LPFS_online_quiz/results" element={<Results />} />
+      <Route path="howto" element={<Howto />} />
+      <Route path="categories" element={<Categories />} />
+      <Route path="category/:categoryId" element={<Category />} />
+      <Route path="category/:categoryId/quiz/:quizId" element={<Quiz />} />
+      <Route path="results" element={<Results />} />
       <Route path="*" element={<PageNotFound />} />
     </Route>
-  )
+  ),
+  { basename: "/LPFS_online_quiz" }
 );
 
 function App() {

@@ -40,7 +40,7 @@ const Results = () => {
   const color = getColorFromPercentage((score / quizData.length) * 100);
   const handleRetakeQuiz = () => {
     // Logic to retake the quiz can be added here
-    navigate(`/LPFS_online_quiz/category/${categoryId}/quiz/${quizId}`, {
+    navigate(`/category/${categoryId}/quiz/${quizId}`, {
       replace: true,
     });
   };

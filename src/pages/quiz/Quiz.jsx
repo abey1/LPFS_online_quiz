@@ -1,10 +1,10 @@
 import React from "react";
 import QuitButton from "../../components/quit_button/QuitButton";
-import data from "../../data/data";
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import Question from "../../components/question/Question";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setCurrent,
@@ -94,7 +94,7 @@ const Quiz = () => {
                 Next
               </button>
             ) : (
-              <Link to="/LPFS_online_quiz/results" replace={true}>
+              <Link to="/results" replace={true}>
                 <button
                   type="button"
                   className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
