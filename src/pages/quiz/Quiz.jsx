@@ -6,8 +6,12 @@ import { useEffect } from "react";
 import Question from "../../components/question/Question";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { selectQuizData } from "./quizSlice";
-import { setCurrent, setDirection, initializeQuizData } from "./quizSlice";
+import {
+  setCurrent,
+  setDirection,
+  initializeQuizData,
+  selectQuizData,
+} from "../../features/quiz/quizSlice.js";
 const Quiz = () => {
   const { categoryId, quizId } = useParams();
   // const quizData = data[categoryId].quizzes[quizId];
