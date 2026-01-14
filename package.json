@@ -1,8 +1,9 @@
 {
   "homepage": "https://abey1.github.io/LPFS_online_quiz/",
-  "name": "online_quiz",
+  "name": "lpfs_online_quiz_application",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "licence": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",

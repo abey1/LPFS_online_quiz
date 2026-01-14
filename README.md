@@ -1,96 +1,105 @@
-# 🧠 Online Quiz Application
+# 📊 LPFS Online Quiz Application
 
-A modern, interactive quiz application that allows users to select categories, take quizzes, receive instant feedback, and review results. The project is designed with clean UX, clear navigation, and scalable architecture, following Agile epics and user stories.
+An interactive **Online Quiz Application** built with **React and Vite** that allows users to select quiz categories, answer multiple‑choice questions, track progress, and view results. This README provides a complete overview of the project for users, developers, and assessors.
 
 ---
 
 ## 📌 Table of Contents
 
-- [Overview](#overview)
+- [About](#about)
 - [Features](#features)
 - [User Flow](#user-flow)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Installation & Setup](#installation--setup)
 - [Usage](#usage)
-- [State Management](#state-management)
-- [Routing](#routing)
-- [Testing](#testing)
-- [Accessibility & UX](#accessibility--ux)
+- [Development Notes](#development-notes)
 - [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
 - [License](#license)
 
 ---
 
-## 📝 Overview
+## 📖 About
 
-The **Online Quiz Application** provides a structured and engaging way for users to test their knowledge across multiple categories. Users are guided from onboarding through quiz completion, with clear instructions, progress tracking, and detailed results.
+The **LPFS Online Quiz Application** is a frontend React project designed to deliver a clean, intuitive quiz experience. Users can navigate through onboarding screens, select quiz categories, answer questions one at a time, and receive immediate feedback and scoring at the end.
 
-The project was implemented following Agile principles, with clearly defined **epics, features, and user stories**, and is suitable for educational, training, or assessment use cases.
+The project follows Agile principles and was developed around clearly defined features and user stories. It is suitable for learning, assessment, and demonstration purposes.
 
 ---
 
 ## ✨ Features
 
 ### 🔹 Quiz Setup & Onboarding
-- Home page with quiz introduction
-- Instructions page explaining rules and scoring
-- Simple and intuitive start flow
+- Home page introduction
+- Clear instructions on how the quiz works
+- Simple entry point to start the quiz
 
 ### 🔹 Quiz Experience
-- Category selection (e.g., General Knowledge, Physics, Math)
+- Category selection
 - Multiple quizzes per category
-- One-question-at-a-time interface
-- Progress indicator (e.g., Question 2 of 5)
-- Previous / Next navigation
+- One‑question‑at‑a‑time flow
+- Progress indicator (e.g. Question 3 of 5)
+- Previous and Next navigation
 
 ### 🔹 Scoring & Feedback
-- Automatic scoring on submission
-- Final score summary
+- Automatic score calculation
+- Results page with score summary
 - Review of correct and incorrect answers
-- Option to restart the quiz or return home
+- Restart quiz option
 
 ### 🔹 UX & Reliability
-- Clean, responsive UI
-- Graceful handling of invalid routes (404 page)
-- Reset logic for retaking quizzes
+- Responsive layout
+- Client‑side routing
+- 404 / invalid route handling
+- Clean reset of quiz state
 
 ---
 
 ## 🔄 User Flow
 
-1. **Home Page** – User learns about the quiz and starts
-2. **How It Works** – Instructions and scoring explanation
-3. **Category Selection** – User selects a topic
-4. **Quiz Selection** – User selects a quiz within the category
-5. **Quiz Page** – User answers questions sequentially
-6. **Results Page** – User reviews score and feedback
-7. **Restart / Home** – User can retry or exit
+1. **Home** – Introduction and start button
+2. **How It Works** – Instructions and rules
+3. **Category Selection** – Choose a quiz topic
+4. **Quiz Selection** – Choose a quiz within a category
+5. **Quiz Page** – Answer questions sequentially
+6. **Results Page** – View score and feedback
+7. **Restart / Home** – Retry or exit
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Frontend:** React (Vite)
-- **Styling:** CSS / Tailwind CSS (or equivalent)
-- **State Management:** Context API / Redux (as implemented)
-- **Routing:** React Router
-- **Build Tool:** Vite
+- **React** – UI framework
+- **Vite** – Development server & bundler
+- **JavaScript (ESNext)** – Application logic
+- **CSS** – Styling
+- **React Router** – Navigation and routing
+- **ESLint** – Code quality
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
 
 ```
-src/
-├── components/      # Reusable UI components
-├── pages/           # Route-level pages (Home, Quiz, Results, etc.)
-├── data/            # Quiz questions and categories
-├── store/           # State management (Redux / Context)
-├── routes/          # Application routes
-├── styles/          # Global and component styles
-└── main.jsx         # App entry point
+LPFS_online_quiz/
+├── public/                 # Static assets
+├── src/                    # Application source code
+│   ├── components/         # Reusable UI components
+│   ├── pages/              # Route‑level pages (Home, Quiz, Results, etc.)
+│   ├── data/               # Quiz questions and category data
+│   ├── store/              # State management (Context / Redux)
+│   ├── routes/             # Application routing setup
+│   ├── styles/             # Global and component styles
+│   └── main.jsx            # Application entry point
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── REQUIREMENTS.md
+├── README.md
+└── vite.config.js
 ```
 
 ---
@@ -99,12 +108,12 @@ src/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/online-quiz-app.git
+   git clone https://github.com/abey1/LPFS_online_quiz.git
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd online-quiz-app
+   cd LPFS_online_quiz
    ```
 
 3. Install dependencies:
@@ -117,7 +126,7 @@ src/
    npm run dev
    ```
 
-5. Open your browser at:
+5. Open the application in your browser:
    ```
    http://localhost:5173
    ```
@@ -128,65 +137,29 @@ src/
 
 - Select a quiz category
 - Choose a quiz
-- Answer all questions
-- Submit to view results
-- Restart or return home as desired
+- Answer all questions using the navigation buttons
+- Submit the quiz to view results
+- Restart the quiz or return to home
 
 ---
 
-## 🧠 State Management
+## 🛠 Development Notes
 
-The application maintains quiz state including:
-- Selected category and quiz
-- Current question index
-- User answers
-- Final score
-
-State is reset when restarting the quiz to ensure a clean experience.
-
----
-
-## 🧭 Routing
-
-Key routes include:
-
-| Route | Description |
-|------|-------------|
-| `/` | Home page |
-| `/how-to` | Instructions page |
-| `/categories` | Category selection |
-| `/categories/:category` | Quiz selection |
-| `/quiz` | Main quiz experience |
-| `/results` | Results and feedback |
-| `*` | 404 Not Found |
-
----
-
-## 🧪 Testing
-
-- Manual testing for user flows
-- Edge cases handled (no answers, invalid routes)
-- Ready for extension with automated tests (Jest / React Testing Library)
-
----
-
-## ♿ Accessibility & UX
-
-- Clear visual hierarchy
-- Readable fonts and contrast
-- Button-based navigation
-- User-friendly feedback messages
+- Quiz state includes selected category, current question index, answers, and score
+- Quiz data is stored under `src/data/` and can be extended easily
+- Routing is handled entirely on the client using React Router
+- Restarting a quiz clears application state for a fresh attempt
 
 ---
 
 ## 🔮 Future Enhancements
 
 - Timed quizzes
-- User authentication
-- Persistent score history
 - Difficulty levels
-- Admin panel for quiz creation
-- Backend integration (API-based quizzes)
+- User authentication
+- Score history tracking
+- Backend API integration
+- Admin interface for quiz creation
 
 ---
 
@@ -195,17 +168,17 @@ Key routes include:
 Contributions are welcome:
 
 1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Open a pull request
+2. Create a new feature branch
+3. Commit your changes with clear messages
+4. Submit a pull request
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License**. Feel free to use, modify, and distribute for educational or commercial purposes.
+This project is licensed under the **MIT License**. You are free to use, modify, and distribute this project for educational or commercial purposes.
 
 ---
 
-**Built with ❤️ as a complete, user-centered quiz experience.**
+**Built as a complete, user‑focused online quiz experience.**
 
