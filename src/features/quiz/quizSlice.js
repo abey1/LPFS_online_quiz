@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { prepareQuizData } from "../../utils/quizUtils.js";
 import data from "../../data/data.js";
 
 const shuffleArray = (array) => {
@@ -26,15 +27,7 @@ const QuizSlice = createSlice({
       const { categoryId, quizId } = action.payload;
       state.categoryId = categoryId;
       state.quizId = quizId;
-      let rawData = data[categoryId].quizzes[quizId];
-      rawData = shuffleArray(rawData);
-      const formattedData = rawData.map((item) => ({
-        ...item,
-        answer: item.choices[0],
-        choices: shuffleArray(item.choices),
-        choice: null,
-      }));
-      state.quizData = formattedData;
+      state.quizData = prepareQuizData(categoryId, quizId);
     },
     setCurrent: (state, action) => {
       state.current = action.payload;

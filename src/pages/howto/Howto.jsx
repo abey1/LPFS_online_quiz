@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Howto = () => {
   return (
-    <div className="flex flex-col justify-center items-center px-4 py-8  min-h-screen border">
+    <div className="flex flex-col justify-center items-center px-4 py-8  min-h-screen">
       <div className="flex flex-col w-full md:w-100 lg:w-150">
         {/* Content */}
         <div>

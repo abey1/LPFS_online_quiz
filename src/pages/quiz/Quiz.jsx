@@ -45,7 +45,7 @@ const Quiz = () => {
   return (
     <>
       <QuitButton />
-      <div className="flex justify-center items-center px-4 py-8  min-h-screen">
+      <div className="flex justify-center items-start px-4 py-8 mt-8 min-h-screen">
         <div className="w-full max-w-xl bg-white rounded-xl shadow-md p-6 md:w-100 lg:w-150">
           {/* Progress */}
           <div className="mb-4 text-sm text-gray-500">
