@@ -57,12 +57,12 @@ const Howto = () => {
 
         {/* Footer Buttons */}
         <div className="flex justify-between mt-10">
-          <Link to="/LPFS_online_quiz/">
+          <Link to="/">
             <button className="p-4 bg-blue-500 text-white rounded hover:bg-blue-600 hover:cursor-pointer">
               Back
             </button>
           </Link>
-          <Link to="/LPFS_online_quiz/categories">
+          <Link to="/categories">
             <button className="p-4 bg-blue-500 text-white rounded hover:bg-blue-600 hover:cursor-pointer">
               Start Quiz
             </button>

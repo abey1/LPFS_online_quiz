@@ -6,10 +6,7 @@ import { useLocation, matchPath } from "react-router-dom";
 const Root = () => {
   const { pathname } = useLocation();
   const isQuizPage = (pathname) => {
-    return matchPath(
-      "/LPFS_online_quiz/category/:categoryId/quiz/:quizId",
-      pathname
-    );
+    return matchPath("category/:categoryId/quiz/:quizId", pathname);
   };
 
   return (

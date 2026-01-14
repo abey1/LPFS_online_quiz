@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const QuitButton = () => {
   const navigate = useNavigate();
   const handleQuit = () => {
-    navigate("/LPFS_online_quiz/", { replace: true });
+    navigate("/", { replace: true });
   };
   return (
     <div className="w-50 md:w-100 lg:w-150 py-4">
