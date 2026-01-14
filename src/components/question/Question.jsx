@@ -1,5 +1,5 @@
 import React from "react";
-import { setUserChoice } from "../../pages/quiz/quizSlice.js";
+import { setUserChoice } from "../../features/quiz/quizSlice.js";
 import { useDispatch } from "react-redux";
 const Question = ({ question, choices, choice }) => {
   const dispatch = useDispatch();

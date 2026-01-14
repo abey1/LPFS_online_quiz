@@ -1,6 +1,6 @@
 import React from "react";
 import BackButton from "../../components/back_button/BackButton";
-import { selectQuizData } from "../quiz/quizSlice.js";
+import { selectQuizData } from "../../features/quiz/quizSlice.js";
 import { useSelector } from "react-redux";
 import SingleResult from "../../components/single_result/SingleResult.jsx";
 import { useNavigate } from "react-router-dom";
