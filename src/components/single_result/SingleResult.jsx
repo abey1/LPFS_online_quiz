@@ -1,5 +1,3 @@
-import React from "react";
-
 const SingleResult = ({ props }) => {
   const { question, answer, choice, index } = props;
   return (

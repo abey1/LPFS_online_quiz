@@ -1,4 +1,3 @@
-import React from "react";
 import BackButton from "../../components/back_button/BackButton";
 import { selectQuizData } from "../../features/quiz/quizSlice.js";
 import { useSelector } from "react-redux";

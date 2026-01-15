@@ -1,4 +1,3 @@
-import React from "react";
 import QuitButton from "../../components/quit_button/QuitButton";
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";

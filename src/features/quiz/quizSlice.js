@@ -1,17 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { prepareQuizData } from "../../utils/quizUtils.js";
-import data from "../../data/data.js";
-
-const shuffleArray = (array) => {
-  const arr = [...array]; // create a copy so original array is not modified
-  for (let i = arr.length - 1; i > 0; i--) {
-    // pick a random index from 0 to i
-    const j = Math.floor(Math.random() * (i + 1));
-    // swap arr[i] with arr[j]
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-};
 
 const QuizSlice = createSlice({
   name: "quiz",
@@ -37,7 +25,6 @@ const QuizSlice = createSlice({
     },
     setUserChoice: (state, action) => {
       state.quizData[state.current].choice = action.payload;
-      console.log(state.quizData);
     },
   },
 });

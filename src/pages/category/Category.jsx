@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import data from "../../data/data";
 import SingleQuiz from "../../components/single_item/SingleQuiz";
