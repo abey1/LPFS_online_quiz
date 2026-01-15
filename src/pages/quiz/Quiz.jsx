@@ -1,4 +1,3 @@
-import React from "react";
 import QuitButton from "../../components/quit_button/QuitButton";
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -24,7 +23,6 @@ const Quiz = () => {
     dispatch(setCurrent(0));
     dispatch(initializeQuizData({ categoryId, quizId }));
   }, [categoryId, quizId]);
-  console.log(quizData);
   const nextQuestion = () => {
     if (current < quizData.length - 1) {
       dispatch(setDirection(1));
@@ -79,11 +77,6 @@ const Quiz = () => {
             >
               Previous
             </button>
-            {/* {current === quizData.length - 1 && !allQuestionsAnswered && (
-              <div className="text-red-500 self-center">
-                Please answer all questions to finish.
-              </div>
-            )} */}
             {current < quizData.length - 1 ? (
               <button
                 type="button"

@@ -1,4 +1,3 @@
-import React from "react";
 import BackButton from "../../components/back_button/BackButton";
 import { selectQuizData } from "../../features/quiz/quizSlice.js";
 import { useSelector } from "react-redux";
@@ -34,7 +33,6 @@ const Results = () => {
       r = Math.round(255 - ((p - 50) / 50) * 255);
       g = 255;
     }
-    console.log(`rgb(${r}, ${g}, ${b})`);
     return `rgb(${r}, ${g}, ${b})`;
   }
   const color = getColorFromPercentage((score / quizData.length) * 100);

@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import Nav from "../../components/nav/Nav";
 import { useLocation, matchPath } from "react-router-dom";

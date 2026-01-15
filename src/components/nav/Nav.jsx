@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "./online_quiz.png";
 import { Link } from "react-router-dom";
 const Nav = () => {

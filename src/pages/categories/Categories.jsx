@@ -1,10 +1,8 @@
-import React from "react";
 import data from "../../data/data";
 import SingleCategory from "../../components/single_item/SingleCategory";
 import BackButton from "../../components/back_button/BackButton";
 
 const Categories = () => {
-  console.log(data);
   return (
     <div className="flex flex-col  w-full h-full justify-center items-center min-h-screen ">
       <BackButton />
