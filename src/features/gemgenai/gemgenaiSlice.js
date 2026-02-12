@@ -3,7 +3,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const fetchGemGenAIData = createAsyncThunk(
   "gemgenai/fetchGemGenAIData",
-  async (category, difficulty = "easy", count = 5) => {
+  async (_, thunkApi) => {
+    const state = thunkApi.getState();
+    const { topic, difficulty, count } = state.gemgenai;
+    console.log(topic, difficulty, count);
     const result = await fetch(
       "https://lpfs-online-quiz-backend.onrender.com/generate-quiz",
       {
@@ -12,7 +15,7 @@ const fetchGemGenAIData = createAsyncThunk(
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          topic: category,
+          topic: topic,
           difficulty: difficulty,
           count: count,
         }),
@@ -44,10 +47,25 @@ const GemGenAISlice = createSlice({
     fulfilled: false,
     error: null,
     aiquestions: [],
+    topic: "",
+    difficulty: "easy",
+    count: 5,
   },
   reducers: {
     toggleHelp: (state) => {
       state.showHelp = !state.showHelp;
+    },
+    setTopic: (state, action) => {
+      state.topic = action.payload;
+    },
+    setDifficulty: (state, action) => {
+      state.difficulty = action.payload;
+    },
+    setCount: (state, action) => {
+      state.count = action.payload;
+    },
+    setFulfilledToFalse: (state) => {
+      state.fulfilled = false;
     },
   },
   extraReducers: (builder) => {
@@ -70,7 +88,13 @@ const GemGenAISlice = createSlice({
   },
 });
 
-export const { toggleHelp } = GemGenAISlice.actions;
+export const {
+  toggleHelp,
+  setTopic,
+  setCount,
+  setDifficulty,
+  setFulfilledToFalse,
+} = GemGenAISlice.actions;
 export const selectGemGenAI = (state) => state.gemgenai;
 export { fetchGemGenAIData };
 export default GemGenAISlice.reducer;

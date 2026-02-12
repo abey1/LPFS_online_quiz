@@ -11,24 +11,35 @@ import {
   initializeQuizData,
   selectQuizData,
 } from "../../features/quiz/quizSlice.js";
-const Quiz = (source = "local") => {
-  if (source === "ai") {
-    // fetch quiz data from AI endpoint based on topic
-    // dispatch(initializeQuizData({ categoryId: "ai", quizId: topic }));
-  } else {
-    //do something else
-  }
-  const { categoryId, quizId } = useParams();
+import { setFulfilledToFalse } from "../../features/gemgenai/gemgenaiSlice.js";
+const Quiz = ({ source = "local" }) => {
+  const dispatch = useDispatch();
+
+  // if (source === "local") {
+  // fetch quiz data from AI endpoint based on topic
+  // dispatch(initializeQuizData({ categoryId: "ai", quizId: topic }));
+  //   const { categoryId, quizId } = useParams();
+  //   dispatch(initializeQuizData({ categoryId, quizId }));
+  // }
+
   // const quizData = data[categoryId].quizzes[quizId];
   const { current, direction, quizData } = useSelector(selectQuizData);
   // 1 for next, -1 for previous
-  const dispatch = useDispatch();
+
+  // Load quiz data (ONLY for local route)
+  const { categoryId, quizId } = useParams();
+  useEffect(() => {
+    if (source === "local") {
+      dispatch(initializeQuizData({ categoryId, quizId }));
+    }
+  }, [source, categoryId, quizId, dispatch]);
+
   useEffect(() => {
     // Load quiz data based on categoryId and quizId
+    // dispatch(setFulfilledToFalse());
     dispatch(setDirection(0));
     dispatch(setCurrent(0));
-    dispatch(initializeQuizData({ categoryId, quizId }));
-  }, [categoryId, quizId]);
+  }, [dispatch]);
 
   const nextQuestion = () => {
     if (current < quizData.length - 1) {

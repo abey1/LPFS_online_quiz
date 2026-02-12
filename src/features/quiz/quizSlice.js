@@ -17,6 +17,10 @@ const QuizSlice = createSlice({
       state.quizId = quizId;
       state.quizData = prepareQuizData(categoryId, quizId);
     },
+    initializeQuizDataAi: (state, action) => {
+      const { aiQuizData } = action.payload;
+      state.quizData = prepareQuizData(null, null, aiQuizData);
+    },
     setCurrent: (state, action) => {
       state.current = action.payload;
     },
@@ -28,7 +32,13 @@ const QuizSlice = createSlice({
     },
   },
 });
-export const { initializeQuizData, setCurrent, setDirection, setUserChoice } =
-  QuizSlice.actions;
+export const {
+  initializeQuizData,
+  initializeQuizDataAi,
+  setCurrent,
+  setDirection,
+  setUserChoice,
+} = QuizSlice.actions;
 export const selectQuizData = (state) => state.quiz;
+export const selectIsQuizEmpty = (state) => state.quiz.quizData.length === 0;
 export default QuizSlice.reducer;

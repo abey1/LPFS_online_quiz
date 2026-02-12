@@ -9,8 +9,17 @@ const shuffleArray = (array) => {
   return arr;
 };
 
-export const prepareQuizData = (categoryId, quizId) => {
-  const rawData = shuffleArray(data[categoryId].quizzes[quizId]);
+export const prepareQuizData = (
+  categoryId = null,
+  quizId = null,
+  data = null,
+) => {
+  let rawData = [];
+  if (data) {
+    rawData = data;
+  } else {
+    rawData = shuffleArray(data[categoryId].quizzes[quizId]);
+  }
 
   return rawData.map((item) => ({
     ...item,
