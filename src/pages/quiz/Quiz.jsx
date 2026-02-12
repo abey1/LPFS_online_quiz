@@ -77,8 +77,8 @@ const Quiz = (source = "local") => {
             Question {current + 1} of {quizData.length}
           </div>
           <div className="flex flex-col justify-center items-center">
-            <div className="w-full max-w-md relative h-[300px]">
-              <AnimatePresence initial={false} custom={direction}>
+            <div className="w-full max-w-md overflow-hidden ">
+              <AnimatePresence initial={false} custom={direction} mode="wait">
                 <motion.div
                   key={quizData[current]?.id}
                   custom={direction}
@@ -86,7 +86,7 @@ const Quiz = (source = "local") => {
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: direction > 0 ? -300 : 300, opacity: 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="absolute top-0 left-0 w-full"
+                  className="w-full"
                 >
                   <Question {...quizData[current]} />
                 </motion.div>
