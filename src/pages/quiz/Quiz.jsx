@@ -11,7 +11,13 @@ import {
   initializeQuizData,
   selectQuizData,
 } from "../../features/quiz/quizSlice.js";
-const Quiz = () => {
+const Quiz = (source = "local") => {
+  if (source === "ai") {
+    // fetch quiz data from AI endpoint based on topic
+    // dispatch(initializeQuizData({ categoryId: "ai", quizId: topic }));
+  } else {
+    //do something else
+  }
   const { categoryId, quizId } = useParams();
   // const quizData = data[categoryId].quizzes[quizId];
   const { current, direction, quizData } = useSelector(selectQuizData);
@@ -23,6 +29,7 @@ const Quiz = () => {
     dispatch(setCurrent(0));
     dispatch(initializeQuizData({ categoryId, quizId }));
   }, [categoryId, quizId]);
+
   const nextQuestion = () => {
     if (current < quizData.length - 1) {
       dispatch(setDirection(1));
@@ -37,7 +44,7 @@ const Quiz = () => {
     }
   };
   const allQuestionsAnswered = Object.values(quizData).every(
-    (q) => q.choice !== null
+    (q) => q.choice !== null,
   );
 
   return (

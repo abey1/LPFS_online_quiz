@@ -1,5 +1,5 @@
 const SingleResult = ({ props }) => {
-  const { question, answer, choice, index } = props;
+  const { question, answer, choice, index, explanation } = props;
   return (
     <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg p-6 space-y-6 w-full md:w-3/4 mb-4">
       {choice === answer ? (
@@ -40,6 +40,10 @@ const SingleResult = ({ props }) => {
 
             <p className="text-green-600">
               <span className="font-medium">Correct Answer:</span> {answer}
+            </p>
+
+            <p className="text-gray-600 mt-2">
+              <span className="font-bold">Explanation:</span> {explanation}
             </p>
           </div>
         </>

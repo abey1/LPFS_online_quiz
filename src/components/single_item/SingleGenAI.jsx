@@ -10,7 +10,7 @@ const SingleGenAI = () => {
       <div>
         <img src={gemini_logo} alt="Gemini Logo" />
       </div>
-      <div>AI</div>
+      <div>AI [create your own category]</div>
     </Link>
   );
 };
