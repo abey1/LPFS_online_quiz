@@ -4,23 +4,35 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 const fetchGemGenAIData = createAsyncThunk(
   "gemgenai/fetchGemGenAIData",
   async (category, difficulty = "easy", count = 5) => {
-    fetch("/api/gemgenai", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const result = await fetch(
+      "https://lpfs-online-quiz-backend.onrender.com/generate-quiz",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          topic: category,
+          difficulty: difficulty,
+          count: count,
+        }),
       },
-      body: JSON.stringify({
-        topic: category,
-        difficulty: difficulty,
-        count: count,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => data)
-      .catch((error) => {
-        console.error("Error fetching GemGenAI data:", error);
-        throw error;
-      });
+    );
+
+    const data = await result.json();
+
+    if (!result.ok) {
+      throw new Error("Failed to fetch GemGenAI data");
+    }
+    console.log("Raw response from API:", data);
+    return data;
+
+    // .then((response) => response.json())
+    // .then((data) => data)
+    // .catch((error) => {
+    //   console.error("Error fetching GemGenAI data:", error);
+    //   throw error;
+    // });
   },
 );
 
@@ -48,7 +60,7 @@ const GemGenAISlice = createSlice({
       state.isPending = false;
       state.error = null;
       state.fulfilled = true;
-      state.aiquestions = action.payload.questions;
+      state.aiquestions = action.payload["questions"];
     });
     builder.addCase(fetchGemGenAIData.rejected, (state, action) => {
       state.isPending = false;
