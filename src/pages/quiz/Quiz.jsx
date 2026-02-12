@@ -12,7 +12,7 @@ import {
   selectQuizData,
 } from "../../features/quiz/quizSlice.js";
 import { setFulfilledToFalse } from "../../features/gemgenai/gemgenaiSlice.js";
-const Quiz = ({ source = "local" }) => {
+const Quiz = (source = "local") => {
   const dispatch = useDispatch();
 
   // if (source === "local") {
@@ -28,8 +28,17 @@ const Quiz = ({ source = "local" }) => {
 
   // Load quiz data (ONLY for local route)
   const { categoryId, quizId } = useParams();
+  console.log("categoryId:", categoryId, "quizId:", quizId);
+  // dispatch(initializeQuizData({ categoryId, quizId }));
   useEffect(() => {
-    if (source === "local") {
+    console.log("before initializing quiz source = ", source.source);
+    if (source.source === "local") {
+      console.log(
+        "Initializing quiz data for categoryId:",
+        categoryId,
+        "quizId:",
+        quizId,
+      );
       dispatch(initializeQuizData({ categoryId, quizId }));
     }
   }, [source, categoryId, quizId, dispatch]);
@@ -57,7 +66,7 @@ const Quiz = ({ source = "local" }) => {
   const allQuestionsAnswered = Object.values(quizData).every(
     (q) => q.choice !== null,
   );
-
+  console.log("Current quiz data in Quiz component:", quizData);
   return (
     <>
       <QuitButton />

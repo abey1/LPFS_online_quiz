@@ -15,7 +15,7 @@ const QuizSlice = createSlice({
       const { categoryId, quizId } = action.payload;
       state.categoryId = categoryId;
       state.quizId = quizId;
-      state.quizData = prepareQuizData(categoryId, quizId);
+      state.quizData = prepareQuizData(categoryId, quizId, null);
     },
     initializeQuizDataAi: (state, action) => {
       const { aiQuizData } = action.payload;

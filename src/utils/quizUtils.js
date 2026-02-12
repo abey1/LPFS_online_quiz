@@ -9,16 +9,13 @@ const shuffleArray = (array) => {
   return arr;
 };
 
-export const prepareQuizData = (
-  categoryId = null,
-  quizId = null,
-  data = null,
-) => {
+export const prepareQuizData = (categoryId, quizId, data1) => {
   let rawData = [];
-  if (data) {
-    rawData = data;
+  if (data1) {
+    rawData = data1;
   } else {
     rawData = shuffleArray(data[categoryId].quizzes[quizId]);
+    console.log("Raw quiz data in prepareQuizData:", rawData);
   }
 
   return rawData.map((item) => ({

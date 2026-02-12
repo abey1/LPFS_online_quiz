@@ -23,7 +23,10 @@ const router = createBrowserRouter(
       <Route path="categories" element={<Categories />} />
       <Route path="category/:categoryId" element={<Category />} />
       <Route path="gemgenai" element={<GemGenAI />} />
-      <Route path="category/:categoryId/quiz/:quizId" element={<Quiz />} />
+      <Route
+        path="category/:categoryId/quiz/:quizId"
+        element={<Quiz source="local" />}
+      />
       <Route path="gemgenai/quiz" element={<Quiz source="ai" />} />
       <Route path="results" element={<Results />} />
       <Route path="*" element={<PageNotFound />} />
