@@ -4,12 +4,14 @@ import whaticon from "../../assets/whaticon.svg";
 import {
   toggleHelp,
   selectGemGenAI,
+  fetchGemGenAIData,
 } from "../../features/gemgenai/gemgenaiSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchGemGenAIData } from "../../features/gemgenai/gemgenaiSlice";
-import { Link } from "react-router-dom";
+import {} from "../../features/gemgenai/gemgenaiSlice";
+
 const GemGenAI = () => {
-  const { showHelp } = useSelector(selectGemGenAI);
+  const { showHelp, isPending, error, aiquestions, fulfilled } =
+    useSelector(selectGemGenAI);
   const dispatch = useDispatch();
 
   return (
@@ -105,9 +107,9 @@ const GemGenAI = () => {
           className="border border-gray-300 rounded-lg px-3 py-2"
           placeholder=" (5 max)"
         />
-        <Link className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-600 transition-colors">
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-600 transition-colors">
           go
-        </Link>
+        </button>
       </form>
     </div>
   );

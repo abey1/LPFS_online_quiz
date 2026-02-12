@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const fetchGemGenAIData = createAsyncThunk(
   "gemgenai/fetchGemGenAIData",
-  async (category) => {
+  async (category, difficulty = "easy", count = 5) => {
     fetch("/api/gemgenai", {
       method: "POST",
       headers: {
@@ -11,8 +11,8 @@ const fetchGemGenAIData = createAsyncThunk(
       },
       body: JSON.stringify({
         topic: category,
-        difficulty: "easy",
-        count: 5,
+        difficulty: difficulty,
+        count: count,
       }),
     })
       .then((response) => response.json())
@@ -29,6 +29,7 @@ const GemGenAISlice = createSlice({
   initialState: {
     showHelp: false,
     isPending: false,
+    fulfilled: false,
     error: null,
     aiquestions: [],
   },
@@ -41,21 +42,23 @@ const GemGenAISlice = createSlice({
     builder.addCase(fetchGemGenAIData.pending, (state) => {
       state.isPending = true;
       state.error = null;
+      state.fulfilled = false;
     });
     builder.addCase(fetchGemGenAIData.fulfilled, (state, action) => {
       state.isPending = false;
       state.error = null;
+      state.fulfilled = true;
       state.aiquestions = action.payload.questions;
     });
     builder.addCase(fetchGemGenAIData.rejected, (state, action) => {
       state.isPending = false;
       state.error = action.error.message;
+      state.fulfilled = false;
     });
   },
 });
 
 export const { toggleHelp } = GemGenAISlice.actions;
 export const selectGemGenAI = (state) => state.gemgenai;
-export const gemgenaiSelector = (state) => state.gemgenai;
 export { fetchGemGenAIData };
 export default GemGenAISlice.reducer;
