@@ -9,7 +9,8 @@ import {
   setDifficulty,
   setCount,
   setFulfilledToFalse,
-} from "../../features/gemgenai/gemgenaiSlice";
+} from "../../features/gemgenai/gemgenaiSlice.js";
+// } from "../../features/gemgenai/gemgenaiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import {} from "../../features/gemgenai/gemgenaiSlice";
 import { div, h1, nav } from "framer-motion/client";
@@ -78,6 +79,7 @@ const GemGenAI = () => {
                 name="prompt"
                 className="border border-gray-300 rounded-lg px-3 py-2"
                 onChange={(e) => dispatch(setTopic(e.target.value))}
+                maxLength={1}
               />
 
               {/* Icon + popup anchor */}
