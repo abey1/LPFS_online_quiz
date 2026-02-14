@@ -1,6 +1,7 @@
 import React from "react";
 import BackButton from "../../components/back_button/BackButton";
 import whaticon from "../../assets/whaticon.svg";
+
 import {
   toggleHelp,
   selectGemGenAI,
@@ -12,17 +13,37 @@ import {
 } from "../../features/gemgenai/gemgenaiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import {} from "../../features/gemgenai/gemgenaiSlice";
-import { div, h1, nav } from "framer-motion/client";
 import Loading from "../../components/loading/Loading";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   initializeQuizDataAi,
   selectIsQuizEmpty,
 } from "../../features/quiz/quizSlice.js";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { ca } from "zod/locales";
+
+//form validation schema
+const schema = z.object({
+  category: z.string().min(1, "Category is required"),
+  numofquestions: z.coerce
+    .number()
+    .min(1, "At least 1 question")
+    .max(5, "max 5 questions"),
+});
 
 const GemGenAI = () => {
+  const {
+    register,
+    trigger,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
+  const categoryRegister = register("category");
   const { showHelp, isPending, error, aiquestions, fulfilled } =
     useSelector(selectGemGenAI);
   const quizDataEmpty = useSelector(selectIsQuizEmpty);
@@ -69,17 +90,24 @@ const GemGenAI = () => {
             className="flex flex-col gap-2"
             onClick={(e) => e.stopPropagation()}
           >
-            <label htmlFor="prompt">Your category</label>
-
             <div className="flex items-start gap-2">
+              <label htmlFor="category">Your category</label>
               <input
+                {...categoryRegister}
                 type="text"
-                id="prompt"
-                name="prompt"
+                id="category"
+                name="category"
                 className="border border-gray-300 rounded-lg px-3 py-2"
-                onChange={(e) => dispatch(setTopic(e.target.value))}
+                onChange={(e) => {
+                  categoryRegister.onChange(e); // for react-hook-form state
+                  dispatch(setTopic(e.target.value));
+                }}
               />
-
+              {errors.category && (
+                <p className="text-red-500 text-sm">
+                  {errors.category.message}
+                </p>
+              )}
               {/* Icon + popup anchor */}
               <div className="relative">
                 <img
@@ -141,6 +169,7 @@ const GemGenAI = () => {
 
             <label htmlFor="numofquestions">Number of questions</label>
             <input
+              {...register("numofquestions", { valueAsNumber: true })}
               type="number"
               id="numofquestions"
               name="numofquestions"
@@ -150,10 +179,21 @@ const GemGenAI = () => {
               placeholder=" (5 max)"
               onChange={(e) => dispatch(setCount(e.target.value))}
             />
+            {errors.numofquestions && (
+              <p className="text-red-500 text-sm">
+                {errors.numofquestions.message}
+              </p>
+            )}
             <button
               type="button"
               className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-600 transition-colors"
-              onClick={() => dispatch(fetchGemGenAIData())}
+              onClick={async () => {
+                const ok = await trigger(); // runs zod validation for all fields
+                if (!ok) return;
+
+                // console.log("Go button clicked");
+                dispatch(fetchGemGenAIData());
+              }}
             >
               go
             </button>
