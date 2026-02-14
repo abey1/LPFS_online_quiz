@@ -15,7 +15,6 @@ export const prepareQuizData = (categoryId, quizId, data1) => {
     rawData = data1;
   } else {
     rawData = shuffleArray(data[categoryId].quizzes[quizId]);
-    console.log("Raw quiz data in prepareQuizData:", rawData);
   }
 
   return rawData.map((item) => ({

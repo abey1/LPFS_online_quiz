@@ -6,7 +6,7 @@ const fetchGemGenAIData = createAsyncThunk(
   async (_, thunkApi) => {
     const state = thunkApi.getState();
     const { topic, difficulty, count } = state.gemgenai;
-    console.log(topic, difficulty, count);
+
     const result = await fetch(
       "https://lpfs-online-quiz-backend.onrender.com/generate-quiz",
       {
@@ -27,15 +27,8 @@ const fetchGemGenAIData = createAsyncThunk(
     if (!result.ok) {
       throw new Error("Failed to fetch GemGenAI data");
     }
-    console.log("Raw response from API:", data);
-    return data;
 
-    // .then((response) => response.json())
-    // .then((data) => data)
-    // .catch((error) => {
-    //   console.error("Error fetching GemGenAI data:", error);
-    //   throw error;
-    // });
+    return data;
   },
 );
 

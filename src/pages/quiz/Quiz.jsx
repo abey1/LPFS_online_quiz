@@ -14,38 +14,19 @@ import {
 import { setFulfilledToFalse } from "../../features/gemgenai/gemgenaiSlice.js";
 const Quiz = (source = "local") => {
   const dispatch = useDispatch();
-
-  // if (source === "local") {
-  // fetch quiz data from AI endpoint based on topic
-  // dispatch(initializeQuizData({ categoryId: "ai", quizId: topic }));
-  //   const { categoryId, quizId } = useParams();
-  //   dispatch(initializeQuizData({ categoryId, quizId }));
-  // }
-
-  // const quizData = data[categoryId].quizzes[quizId];
   const { current, direction, quizData } = useSelector(selectQuizData);
   // 1 for next, -1 for previous
 
   // Load quiz data (ONLY for local route)
   const { categoryId, quizId } = useParams();
-  console.log("categoryId:", categoryId, "quizId:", quizId);
-  // dispatch(initializeQuizData({ categoryId, quizId }));
+
   useEffect(() => {
-    console.log("before initializing quiz source = ", source.source);
     if (source.source === "local") {
-      console.log(
-        "Initializing quiz data for categoryId:",
-        categoryId,
-        "quizId:",
-        quizId,
-      );
       dispatch(initializeQuizData({ categoryId, quizId }));
     }
   }, [source, categoryId, quizId, dispatch]);
 
   useEffect(() => {
-    // Load quiz data based on categoryId and quizId
-    // dispatch(setFulfilledToFalse());
     dispatch(setDirection(0));
     dispatch(setCurrent(0));
   }, [dispatch]);
@@ -66,7 +47,6 @@ const Quiz = (source = "local") => {
   const allQuestionsAnswered = Object.values(quizData).every(
     (q) => q.choice !== null,
   );
-  console.log("Current quiz data in Quiz component:", quizData);
   return (
     <>
       <QuitButton />

@@ -15,7 +15,6 @@ const Categories = () => {
           prop={{ ...data[categoryKey], categoryKey }}
         />
       ))}
-      {/* {console.log("data = ", data["generalKnowledge"])} */}
       <SingleGenAI />
     </div>
   );

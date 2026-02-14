@@ -1,7 +1,6 @@
 import React from "react";
 import BackButton from "../../components/back_button/BackButton";
 import whaticon from "../../assets/whaticon.svg";
-
 import {
   toggleHelp,
   selectGemGenAI,
@@ -49,12 +48,6 @@ const GemGenAI = () => {
   const quizDataEmpty = useSelector(selectIsQuizEmpty);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  // Reset slice when component mounts
-  // useEffect(() => {
-  // dispatch(setFulfilledToFalse());
-  // }, [dispatch]);
-
   const hasMounted = useRef(false);
 
   // When fulfilled becomes true, then init quiz + navigate
@@ -68,10 +61,10 @@ const GemGenAI = () => {
     if (!fulfilled) return;
 
     dispatch(initializeQuizDataAi({ aiQuizData: aiquestions }));
-    // dispatch(setFulfilledToFalse());
+
     navigate("/gemgenai/quiz", { replace: true }); // replace prevents back-button weirdness
   }, [fulfilled, aiquestions, dispatch, navigate]);
-  // [fulfilled, aiquestions, dispatch, navigate]);
+
   return (
     <div
       onClick={() => {
@@ -191,7 +184,6 @@ const GemGenAI = () => {
                 const ok = await trigger(); // runs zod validation for all fields
                 if (!ok) return;
 
-                // console.log("Go button clicked");
                 dispatch(fetchGemGenAIData());
               }}
             >
@@ -212,7 +204,7 @@ const GemGenAI = () => {
                 <p className="text-red-500 mt-2">
                   Error: {error}. Please try again.
                 </p>
-              ) /* You might want to make this more user-friendly */
+              ) /* ToDo: You might want to make this more user-friendly */
             }
           </form>
         </div>
