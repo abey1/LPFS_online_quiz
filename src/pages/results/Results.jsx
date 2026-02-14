@@ -38,9 +38,10 @@ const Results = () => {
   const color = getColorFromPercentage((score / quizData.length) * 100);
   const handleRetakeQuiz = () => {
     // Logic to retake the quiz can be added here
-    navigate(`/category/${categoryId}/quiz/${quizId}`, {
-      replace: true,
-    });
+    navigate("/gemgenai/quiz", { replace: true });
+    // navigate(`/category/${categoryId}/quiz/${quizId}`, {
+    //   replace: true,
+    // });
   };
   return (
     <div className="flex flex-col justify-center items-center px-4 py-8  min-h-screen">
